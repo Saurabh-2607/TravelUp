@@ -1,0 +1,108 @@
+{
+    "products": [
+        {
+            "id": "TUP001PRO",
+            "name": "Exploring Paris Guide",
+            "price": 24.99,
+            "description": "A comprehensive guide to exploring the City of Light, from famous landmarks to hidden gems.",
+            "author": "Sophie Martin",
+            "pageCount": 352,
+            "publisher": "World Travelers Press",
+            "coverImage": "/images/paris-guide.jpg",
+            "categories": ["Europe", "France", "City Guide"],
+            "rating": 4.8,
+            "inStock": true
+        },
+        {
+            "id": "TUP002PRO",
+            "name": "Tokyo on Budget",
+            "price": 19.95,
+            "description": "Navigate Tokyo affordably with insider tips on cheap eats, free attractions, and discount accommodations.",
+            "author": "Kenji Nakamura",
+            "pageCount": 284,
+            "publisher": "Frugal Wanderer Books",
+            "coverImage": "/images/tokyo-guide.jpg",
+            "categories": ["Asia", "Japan", "Budget Travel"],
+            "rating": 4.6,
+            "inStock": true
+        },
+        {
+            "id": "TUP003PRO",
+            "name": "Hiking Andes Guide",
+            "price": 29.99,
+            "description": "Essential information for planning and executing memorable treks through the Andean mountain range.",
+            "author": "Carlos Mendoza",
+            "pageCount": 412,
+            "publisher": "Mountain Explorer Publications",
+            "coverImage": "/images/andes-guide.jpg",
+            "categories": ["South America", "Hiking", "Adventure"],
+            "rating": 4.9,
+            "inStock": true
+        },
+        {
+            "id": "TUP004PRO",
+            "name": "African Safari Guide",
+            "price": 34.50,
+            "description": "Everything you need to know about planning the perfect safari across Africa's most stunning wildlife reserves.",
+            "author": "Nelson Okoro",
+            "pageCount": 386,
+            "publisher": "Wild Journey Press",
+            "coverImage": "/images/safari-guide.jpg",
+            "categories": ["Africa", "Wildlife", "Safari"],
+            "rating": 4.7,
+            "inStock": true
+        },
+        {
+            "id": "TUP005PRO",
+            "name": "New York Treasures",
+            "price": 22.99,
+            "description": "Discover the secret spots and local favorites that most tourists never see in the Big Apple.",
+            "author": "Jessica Klein",
+            "pageCount": 328,
+            "publisher": "Urban Adventures Books",
+            "coverImage": "/images/nyc-guide.jpg",
+            "categories": ["North America", "USA", "City Guide"],
+            "rating": 4.5,
+            "inStock": true
+        },
+        {
+            "id": "TUP006PRO",
+            "name": "Southeast Asia Backpacking",
+            "price": 18.99,
+            "description": "The essential companion for budget travelers exploring Thailand, Vietnam, Cambodia, and more.",
+            "author": "Ryan Thompson",
+            "pageCount": 396,
+            "publisher": "Nomad's Handbook",
+            "coverImage": "/images/southeast-asia-guide.jpg",
+            "categories": ["Asia", "Budget Travel", "Backpacking"],
+            "rating": 4.8,
+            "inStock": false
+        },
+        {
+            "id": "TUP007PRO",
+            "name": "Italian Cuisine Journey",
+            "price": 27.50,
+            "description": "Explore Italy through its food with this guide to authentic regional dishes and where to find them.",
+            "author": "Marco Rossi",
+            "pageCount": 342,
+            "publisher": "Culinary Travels",
+            "coverImage": "/images/italy-food-guide.jpg",
+            "categories": ["Europe", "Italy", "Food & Drink"],
+            "rating": 4.9,
+            "inStock": true
+        },
+        {
+            "id": "TUP008PRO",
+            "name": "Australian Outback Adventures",
+            "price": 26.95,
+            "description": "Your guide to exploring Australia's vast interior, from Uluru to the remote cattle stations.",
+            "author": "Emma Wilson",
+            "pageCount": 368,
+            "publisher": "Down Under Publications",
+            "coverImage": "/images/australia-guide.jpg",
+            "categories": ["Australia", "Outback", "Adventure"],
+            "rating": 4.6,
+            "inStock": true
+        }
+    ]
+}

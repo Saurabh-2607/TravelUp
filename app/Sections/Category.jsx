@@ -29,7 +29,7 @@ const handleCategoryClick = (title) => {
 return (
     <div className="px-25 relative">
             <div className="flex justify-between items-center pb-2">
-            <div className="text-black flex text-2xl pb-8 pt-12 font-bold">
+            <div className="text-black flex text-3xl pb-8 pt-12 font-bold">
             Explore by category
             </div>  
             <div className="flex gap-2 items-center">

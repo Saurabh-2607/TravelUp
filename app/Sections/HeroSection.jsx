@@ -126,7 +126,7 @@ export default function HeroSection() {
                 >
                     {excerpt}
                 </p>
-                <button className="px-5 py-2 s-font bg-black text-white font-semibold text-sm hover:bg-gray-800 transition">
+                <button className="px-5 py-3 s-font bg-black text-white font-semibold text-sm hover:bg-gray-800 transition">
                     Read more
                 </button>
             </div>
