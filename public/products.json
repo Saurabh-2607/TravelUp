@@ -8,7 +8,7 @@
             "author": "Sophie Martin",
             "pageCount": 352,
             "publisher": "World Travelers Press",
-            "coverImage": "/images/paris-guide.jpg",
+            "coverImage": "https://images.unsplash.com/photo-1598618023850-728cd1fc0550?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHJhdmVsJTIwZ3VpZCUyMGJvb2tzfGVufDB8fDB8fHww",
             "categories": ["Europe", "France", "City Guide"],
             "rating": 4.8,
             "inStock": true
@@ -21,7 +21,7 @@
             "author": "Kenji Nakamura",
             "pageCount": 284,
             "publisher": "Frugal Wanderer Books",
-            "coverImage": "/images/tokyo-guide.jpg",
+            "coverImage": "https://unsplash.com/photos/blue-book-EURhcNoJbP0",
             "categories": ["Asia", "Japan", "Budget Travel"],
             "rating": 4.6,
             "inStock": true
@@ -34,7 +34,7 @@
             "author": "Carlos Mendoza",
             "pageCount": 412,
             "publisher": "Mountain Explorer Publications",
-            "coverImage": "/images/andes-guide.jpg",
+            "coverImage": "https://unsplash.com/photos/a-map-a-camera-and-a-book-on-a-table-y_PoefERxMg",
             "categories": ["South America", "Hiking", "Adventure"],
             "rating": 4.9,
             "inStock": true
@@ -47,7 +47,7 @@
             "author": "Nelson Okoro",
             "pageCount": 386,
             "publisher": "Wild Journey Press",
-            "coverImage": "/images/safari-guide.jpg",
+            "coverImage": "https://unsplash.com/photos/blue-book-on-brown-wooden-table-oy-wvkUbudo",
             "categories": ["Africa", "Wildlife", "Safari"],
             "rating": 4.7,
             "inStock": true
@@ -60,7 +60,7 @@
             "author": "Jessica Klein",
             "pageCount": 328,
             "publisher": "Urban Adventures Books",
-            "coverImage": "/images/nyc-guide.jpg",
+            "coverImage": "https://unsplash.com/photos/passport-and-slr-camera-on-table-with-string-lights-YGGwRdUKv5c",
             "categories": ["North America", "USA", "City Guide"],
             "rating": 4.5,
             "inStock": true
@@ -73,7 +73,7 @@
             "author": "Ryan Thompson",
             "pageCount": 396,
             "publisher": "Nomad's Handbook",
-            "coverImage": "/images/southeast-asia-guide.jpg",
+            "coverImage": "https://unsplash.com/photos/white-and-green-book-page-2JaXAyG22_g",
             "categories": ["Asia", "Budget Travel", "Backpacking"],
             "rating": 4.8,
             "inStock": false
@@ -86,7 +86,7 @@
             "author": "Marco Rossi",
             "pageCount": 342,
             "publisher": "Culinary Travels",
-            "coverImage": "/images/italy-food-guide.jpg",
+            "coverImage": "https://unsplash.com/photos/a-passport-sitting-on-top-of-a-passport-case-rHBbnVLoWuY",
             "categories": ["Europe", "Italy", "Food & Drink"],
             "rating": 4.9,
             "inStock": true
@@ -99,7 +99,7 @@
             "author": "Emma Wilson",
             "pageCount": 368,
             "publisher": "Down Under Publications",
-            "coverImage": "/images/australia-guide.jpg",
+            "coverImage": "https://unsplash.com/photos/a-bunch-of-books-that-are-on-a-table-q2TUyMAn8_E",
             "categories": ["Australia", "Outback", "Adventure"],
             "rating": 4.6,
             "inStock": true
