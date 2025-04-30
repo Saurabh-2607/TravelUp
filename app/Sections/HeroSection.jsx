@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, memo } from "react";
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 import Navbar from '../components/Navbar';
 import {ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -13,7 +14,7 @@ const trimToWords = (text, wordLimit) => {
 };
 
 // Memo-ize slide content to prevent unnecessary re-renders
-const SlideContent = memo(({ title, excerpt, category, onPrevSlide, onNextSlide }) => {
+const SlideContent = memo(({ id, title, excerpt, category, onPrevSlide, onNextSlide, onReadMore }) => {
   const trimmedTitle = trimToWords(title, 5);
   const trimmedExcerpt = trimToWords(excerpt, 20);
   
@@ -49,7 +50,10 @@ const SlideContent = memo(({ title, excerpt, category, onPrevSlide, onNextSlide 
       >
         {trimmedExcerpt}
       </p>
-      <button className="px-5 py-3 s-font bg-black text-white font-semibold text-sm hover:bg-gray-800 transition">
+      <button 
+        className="px-5 py-3 s-font bg-black text-white font-semibold text-sm hover:bg-gray-800 transition"
+        onClick={() => onReadMore(id)}
+      >
         Read more
       </button>
     </div>
@@ -63,6 +67,7 @@ export default function HeroSection() {
     const [current, setCurrent] = useState(0);
     const [fade, setFade] = useState(false);
     const [loading, setLoading] = useState(true);
+    const router = useRouter();
 
     // Use useCallback to memoize these functions
     const nextSlide = useCallback(() => {
@@ -82,6 +87,10 @@ export default function HeroSection() {
             setFade(false);
         }, 500);
     }, [current, slides.length]);
+
+    const handleReadMore = useCallback((id) => {
+        router.push(`/articles/${id}`);
+    }, [router]);
 
     useEffect(() => {
         // Use AbortController to handle component unmounting
@@ -125,7 +134,7 @@ export default function HeroSection() {
         );
     }
 
-    const { title, excerpt, image, category } = slides[current];
+    const { id, title, excerpt, image, category } = slides[current];
 
     return (
         <div className="relative w-full h-screen overflow-hidden bg-gray-100">
@@ -149,11 +158,13 @@ export default function HeroSection() {
 
             {/* Use memoized component for slide content */}
             <SlideContent 
+                id={id}
                 title={title} 
                 excerpt={excerpt} 
                 category={category} 
                 onPrevSlide={prevSlide} 
-                onNextSlide={nextSlide} 
+                onNextSlide={nextSlide}
+                onReadMore={handleReadMore}
             />
 
             <div className="absolute bottom-61.75 left-137 shadow-lg">
