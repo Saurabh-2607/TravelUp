@@ -8,6 +8,7 @@ import Destination from './Destination';
 import Newsletter from '../components/Newsletter';
 import Advertisement from '../components/Advertisemnet';
 import Pagination from '../components/Pagination';
+import Instagram from './Instagram';
 
 const RecentArticles = () => {
     const [articles, setArticles] = useState([]);
@@ -15,7 +16,7 @@ const RecentArticles = () => {
     const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
-        fetch('/articles.json')
+        fetch('/data/articles.json')
             .then(res => res.json())
             .then(data => {
                 const articleSlides = data.slice(0, 6).map(article => ({
@@ -34,7 +35,7 @@ const RecentArticles = () => {
     if (loading) return <div className="text-center py-10">Loading articles...</div>;
 
     return (
-        <section className="absolute left-25 right-25 py-12">
+        <section className="relative py-12 mx-auto px-25">
             <h2 className="text-3xl font-semibold mb-8">Recent articles</h2>
             <div className="flex flex-col lg:flex-row gap-8">
 
@@ -65,8 +66,10 @@ const RecentArticles = () => {
                     <Destination/>
                     <Newsletter/>
                     <Advertisement/>
+                
                 </aside>
             </div>
+            <Instagram/>
         </section>
     );
 };

@@ -1,8 +1,49 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, memo } from "react";
 import Image from "next/image";
 import { Menu, Search, ChevronLeft, ChevronRight } from "lucide-react";
+
+// Memo-ize slide content to prevent unnecessary re-renders
+const SlideContent = memo(({ title, excerpt, category, onPrevSlide, onNextSlide }) => (
+  <div className="absolute bottom-0 left-25 bg-white pb-7 pl-8 max-w-md shadow-lg">
+    <div className="flex justify-between items-center">
+      <div></div>
+      <button
+        onClick={onPrevSlide}
+        className="bg-black text-white p-2 hover:bg-gray-800"
+      >
+        <ChevronLeft className="w-5 h-5" />
+      </button>
+    </div>
+
+    <p className="text-sm mb-1 s-font font-medium text-black">{category}</p>
+    <h2 className="text-3xl font-bold text-black leading-tight mr-8 mb-3"
+      style={{
+        display: "-webkit-box",
+        WebkitLineClamp: 2,
+        WebkitBoxOrient: "vertical",
+      }}
+    >
+      {title}
+    </h2>
+    <p
+      className="text-gray-500 s-font mr-8 mb-4 overflow-hidden text-ellipsis"
+      style={{
+        display: "-webkit-box",
+        WebkitLineClamp: 2,
+        WebkitBoxOrient: "vertical",
+      }}
+    >
+      {excerpt}
+    </p>
+    <button className="px-5 py-3 s-font bg-black text-white font-semibold text-sm hover:bg-gray-800 transition">
+      Read more
+    </button>
+  </div>
+));
+
+SlideContent.displayName = 'SlideContent';
 
 export default function HeroSection() {
     const [slides, setSlides] = useState([]);
@@ -10,61 +51,20 @@ export default function HeroSection() {
     const [fade, setFade] = useState(false);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        fetch('/articles.json')
-            .then(response => response.json())
-            .then(data => {
-                const articleSlides = data.slice(0, 5).map(article => ({
-                    id: article.id,
-                    title: article.title,
-                    excerpt: article.excerpt,
-                    image: article.imageUrl,
-                    category: article.category
-                }));
-                setSlides(articleSlides);
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error("Error fetching articles:", error);
-                setLoading(false);
-            });
-    }, []);
-
-    const total = slides.length;
-
-    const nextSlide = () => {
-        if (total === 0) return;
+    // Use useCallback to memoize these functions
+    const nextSlide = useCallback(() => {
+        if (slides.length === 0) return;
         setFade(true);
         setTimeout(() => {
-            setCurrent((current + 1) % total);
+            setCurrent((current + 1) % slides.length);
             setFade(false);
         }, 500);
-    };
+    }, [current, slides.length]);
 
-    const prevSlide = () => {
-        if (total === 0) return;
+    const prevSlide = useCallback(() => {
+        if (slides.length === 0) return;
         setFade(true);
         setTimeout(() => {
-            setCurrent((current - 1 + total) % total);
-            setFade(false);
-        }, 500);
-    };
-
-    useEffect(() => {
-        if (total === 0) return;
-        const interval = setInterval(nextSlide, 5000);
-        return () => clearInterval(interval);
-    }, [current, total]);
-
-    if (loading || slides.length === 0) {
-        return (
-            <div className="relative w-full h-screen flex items-center justify-center bg-gray-100">
-                <p>Loading...</p>
-            </div>
-        );
-    }
-
-    const { title, excerpt, image, category } = slides[current];
 
     return (
         <div className="relative w-full h-screen overflow-hidden bg-gray-100">
