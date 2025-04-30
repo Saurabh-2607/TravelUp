@@ -1,24 +1,30 @@
 const ProductsCards = ({title, price, imageurl}) => {
+    const handleImageError = (e) => {
+        console.error(`Failed to load image for "${title}"`);
+        e.target.onerror = null;
+        e.target.style.backgroundImage = "url('/placeholder-image.jpg')";
+    };
+
     return (
-        <div className="w-40 h-64 left-[257px] top-[109px] absolute">
-            <button className="w-40 h-14 left-0 top-[195px] absolute bg-white text-center text-black text-base font-bold font-['Open_Sans'] leading-normal">
+        <div className="w-42 h-75 relative">
+            <button className="w-42 h-16 absolute bottom-0 bg-white text-center text-black text-base font-bold">
                 Buy
             </button>
             <div 
-                className="w-40 h-48 left-0 top-0 absolute bg-cover bg-center"
+                className="w-42 h-59 relative bg-cover bg-center"
                 style={{
-                    backgroundImage: `url(${imageurl})`,
-                    position: 'relative',
+                    backgroundImage: `url(${imageurl || '/placeholder-image.jpg'})`,
                 }}
+                onError={handleImageError}
             >
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent"></div>
-            </div>
-            <div className="px-3.5 left-[21px] top-[115px] absolute inline-flex justify-start items-start gap-2.5 overflow-hidden">
-                <div className="text-center justify-center text-white text-2xl font-bold font-['Cormorant_Garamond'] leading-loose">{title}</div>
-            </div>
-            <div className="w-12 h-12 left-[117px] top-0 absolute overflow-hidden">
-                <div className="w-12 h-12 left-0 top-0 absolute bg-white" />
-                <div className="left-[9px] top-[11px] absolute text-center justify-start text-black text-lg font-bold font-['Open_Sans'] leading-relaxed">${price}</div>
+                <div className="absolute px-3 bottom-4 inline-flex justify-start items-start gap-2 overflow-hidden">
+                    <div className="text-center justify-center text-white text-xl font-bold">{title}</div>
+                </div>
+                <div className="w-14 h-14 absolute top-0 right-0 overflow-hidden">
+                    <div className="w-14 h-14 bg-white" />
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-black text-lg font-bold">${price}</div>
+                </div>
             </div>
         </div>
     );
