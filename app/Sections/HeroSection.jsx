@@ -138,12 +138,16 @@ export default function HeroSection() {
 
     return (
         <div className="relative w-full h-screen overflow-hidden bg-gray-100" style={{ zIndex: 1 }}>
+            {/* Position the Navbar outside the image container to ensure it's always visible */}
+            <div className="relative z-10">
+                <Navbar />
+            </div>
+            
             <div
                 className={`absolute inset-0 transition-opacity duration-500 ${
                     fade ? "opacity-0" : "opacity-100"
                 }`}
             >
-                <Navbar />
                 <Image
                     src={image}
                     alt={title}
@@ -154,7 +158,6 @@ export default function HeroSection() {
                     quality={80}
                 />
             </div>
-
 
             {/* Use memoized component for slide content */}
             <SlideContent 

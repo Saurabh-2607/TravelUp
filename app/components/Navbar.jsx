@@ -83,9 +83,12 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="relative py-4">
+            <nav className="relative ml-25 mr-25 py-4">
                 <div className="container mx-auto px-4 flex justify-between items-center">
-                    <div className="text-black cursor-pointer">
+                    <div 
+                        className="text-black cursor-pointer"
+                        onClick={() => setMenuOpen(true)}
+                    >
                         <Menu className="w-6 h-6" />
                     </div>
                     
