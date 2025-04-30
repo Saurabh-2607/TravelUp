@@ -7,6 +7,7 @@ import AboutCard from '../components/AboutCard';
 import Destination from './Destination';
 import Newsletter from '../components/Newsletter';
 import Advertisement from '../components/Advertisemnet';
+import Pagination from '../components/Pagination';
 
 const RecentArticles = () => {
     const [articles, setArticles] = useState([]);
@@ -55,28 +56,7 @@ const RecentArticles = () => {
                     ))}
 
                     {/* Pagination */}
-                    <div className="flex justify-center mt-8">
-                        <nav className="flex items-center gap-1">
-                            <button className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-sm">
-                                &lt;
-                            </button>
-                            
-                            {[1, 2, 3, 4, 5, "...", 10, 11, 12, 13, 14].map((page, index) => (
-                                <button 
-                                    key={index} 
-                                    className={`w-8 h-8 flex items-center justify-center ${
-                                        page === 1 ? "border-2 border-black font-bold" : "border border-gray-300"
-                                    } rounded-sm`}
-                                >
-                                    {page}
-                                </button>
-                            ))}
-                            
-                            <button className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-sm">
-                                &gt;
-                            </button>
-                        </nav>
-                    </div>
+                    <Pagination/>
                 </div>
 
                 <aside className="w-full lg:w-64 flex flex-col gap-8">
