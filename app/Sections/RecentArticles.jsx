@@ -5,6 +5,8 @@ import PromoProducts from './PromoProducts';
 import ArticlePreview from '../components/ArticalPreview';
 import AboutCard from '../components/AboutCard';
 import Destination from './Destination';
+import Newsletter from '../components/Newsletter';
+import Advertisement from '../components/Advertisemnet';
 
 const RecentArticles = () => {
     const [articles, setArticles] = useState([]);
@@ -77,44 +79,12 @@ const RecentArticles = () => {
                     </div>
                 </div>
 
-                {/* RIGHT SIDEBAR */}
                 <aside className="w-full lg:w-64 flex flex-col gap-8">
                     <AboutCard />
 
-{/* Destinations */}
-<Destination/>
-
-{/* Newsletter 
-<div className="border border-gray-200 p-4">
-    <h3 className="text-xl font-semibold mb-2">Newsletter</h3>
-    <p className="text-sm mb-4">Subscribe to receive exclusive content updates, travel & photo tips!</p>
-    <input 
-        type="email" 
-        placeholder="Email address" 
-        className="w-full border border-gray-300 px-3 py-2 mb-3" 
-    />
-    <button className="bg-black text-white px-4 py-2 w-full">Subscribe</button>
-</div>
-
-<div className="border border-gray-200 p-4">
-    <h3 className="text-xl font-semibold mb-4">Where to next?</h3>
-    <input 
-        type="text" 
-        placeholder="Destination name" 
-        className="w-full border border-gray-300 px-3 py-2 mb-3"
-    />
-    <input 
-        type="date" 
-        className="w-full border border-gray-300 px-3 py-2 mb-3"
-        placeholder="Check-in date" 
-    />
-    <input 
-        type="date" 
-        className="w-full border border-gray-300 px-3 py-2 mb-3"
-        placeholder="Check-out date"
-    />
-    <button className="bg-black text-white px-4 py-2 w-full">Read more</button>
-</div> */}
+                    <Destination/>
+                    <Newsletter/>
+                    <Advertisement/>
                 </aside>
             </div>
         </section>
