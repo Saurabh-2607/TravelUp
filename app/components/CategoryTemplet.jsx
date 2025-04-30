@@ -17,7 +17,7 @@ const CategoryTemplet = ({ title, imageUrl, isSelected = false, onClick, classNa
                 loading="lazy"
                 data-image-url={imageUrl} // Add data attribute for tracking/debugging
             />
-            <div className={`left-1/2 absolute text-white text-2xl font-bold transform -translate-x-1/2`}
+            <div className={`left-1/2 absolute text-white pt-3 text-2xl font-bold transform -translate-x-1/2`}
                  style={{ top: isSelected ? '110px' : '85px' }}>
                 {title}
             </div>            

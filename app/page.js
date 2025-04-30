@@ -1,13 +1,9 @@
-import HeroSection from "./Sections/HeroSection";
-import Category from "./Sections/Category";
-import RecentArticles from "./Sections/RecentArticles";
+import LandingPage from "./Pages/LandingPage";
 
 export default function Home() {
   return (
     <>
-        <HeroSection/>
-        <Category/>
-        <RecentArticles/>
+      <LandingPage/> 
     </>
   );
 }

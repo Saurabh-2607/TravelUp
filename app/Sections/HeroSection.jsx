@@ -2,46 +2,59 @@
 
 import { useState, useEffect, useCallback, memo } from "react";
 import Image from "next/image";
-import { Menu, Search, ChevronLeft, ChevronRight } from "lucide-react";
+import Navbar from '../components/Navbar';
+import {ChevronLeft, ChevronRight } from "lucide-react";
+
+const trimToWords = (text, wordLimit) => {
+  if (!text) return '';
+  const words = text.split(' ');
+  if (words.length <= wordLimit) return text;
+  return words.slice(0, wordLimit).join(' ') + '...';
+};
 
 // Memo-ize slide content to prevent unnecessary re-renders
-const SlideContent = memo(({ title, excerpt, category, onPrevSlide, onNextSlide }) => (
-  <div className="absolute bottom-0 left-25 bg-white pb-7 pl-8 max-w-md shadow-lg">
-    <div className="flex justify-between items-center">
-      <div></div>
-      <button
-        onClick={onPrevSlide}
-        className="bg-black text-white p-2 hover:bg-gray-800"
+const SlideContent = memo(({ title, excerpt, category, onPrevSlide, onNextSlide }) => {
+  const trimmedTitle = trimToWords(title, 5);
+  const trimmedExcerpt = trimToWords(excerpt, 20);
+  
+  return (
+    <div className="absolute bottom-0 left-25 bg-white pb-7 pl-8 max-w-md shadow-lg">
+      <div className="flex justify-between items-center">
+        <div></div>
+        <button
+          onClick={onPrevSlide}
+          className="bg-black text-white p-2 hover:bg-gray-800"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+      </div>
+
+      <p className="text-sm mb-1 s-font font-medium text-black">{category}</p>
+      <h2 className="text-3xl font-bold text-black leading-tight mr-8 mb-3"
+        style={{
+          display: "-webkit-box",
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: "vertical",
+        }}
       >
-        <ChevronLeft className="w-5 h-5" />
+        {trimmedTitle}
+      </h2>
+      <p
+        className="text-gray-500 s-font mr-8 mb-4 overflow-hidden text-ellipsis"
+        style={{
+          display: "-webkit-box",
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: "vertical",
+        }}
+      >
+        {trimmedExcerpt}
+      </p>
+      <button className="px-5 py-3 s-font bg-black text-white font-semibold text-sm hover:bg-gray-800 transition">
+        Read more
       </button>
     </div>
-
-    <p className="text-sm mb-1 s-font font-medium text-black">{category}</p>
-    <h2 className="text-3xl font-bold text-black leading-tight mr-8 mb-3"
-      style={{
-        display: "-webkit-box",
-        WebkitLineClamp: 2,
-        WebkitBoxOrient: "vertical",
-      }}
-    >
-      {title}
-    </h2>
-    <p
-      className="text-gray-500 s-font mr-8 mb-4 overflow-hidden text-ellipsis"
-      style={{
-        display: "-webkit-box",
-        WebkitLineClamp: 2,
-        WebkitBoxOrient: "vertical",
-      }}
-    >
-      {excerpt}
-    </p>
-    <button className="px-5 py-3 s-font bg-black text-white font-semibold text-sm hover:bg-gray-800 transition">
-      Read more
-    </button>
-  </div>
-));
+  );
+});
 
 SlideContent.displayName = 'SlideContent';
 
@@ -116,12 +129,12 @@ export default function HeroSection() {
 
     return (
         <div className="relative w-full h-screen overflow-hidden bg-gray-100">
-            {/* Image with priority loading for the visible slide */}
             <div
                 className={`absolute inset-0 transition-opacity duration-500 ${
                     fade ? "opacity-0" : "opacity-100"
                 }`}
             >
+                <Navbar />
                 <Image
                     src={image}
                     alt={title}
@@ -133,15 +146,6 @@ export default function HeroSection() {
                 />
             </div>
 
-            <div className="absolute top-6 left-25 text-black">
-                <Menu className="filter w-6 h-6" />
-            </div>
-            <h1 className="absolute bg-blend-color-burn top-6 left-1/2 mb-8 -translate-x-1/2 text-2xl font-bold text-black">
-                TravelUp
-            </h1>
-            <div className="absolute top-6 right-25 text-black">
-                <Search className="w-6 h-6" />
-            </div>
 
             {/* Use memoized component for slide content */}
             <SlideContent 
@@ -152,7 +156,7 @@ export default function HeroSection() {
                 onNextSlide={nextSlide} 
             />
 
-            <div className="absolute bottom-59.75 left-137 shadow-lg">
+            <div className="absolute bottom-61.75 left-137 shadow-lg">
                 <button
                     onClick={nextSlide}
                     className="bg-white text-black p-2 hover:bg-gray-200"

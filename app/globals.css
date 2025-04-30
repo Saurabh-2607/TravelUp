@@ -158,3 +158,22 @@ footer {
 .instagram-post {
   flex: 0 0 auto;
 }
+
+/* Ensure header and nav elements have no background */
+header, nav, .navbar, [class*="navbar"], header *, header > div, header > div > * {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  border: none !important;
+}
+
+/* Add a specific override for the navbar */
+body > header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: none !important;
+}

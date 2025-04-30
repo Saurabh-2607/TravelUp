@@ -33,22 +33,22 @@ const AboutCard = () => {
                 <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2">
                     <div className="flex justify-center gap-2">
                         {/* Facebook */}
-                        <a href="#" className="w-13 h-13 bg-black flex items-center justify-center">
+                        <a href="#" className="w-11 h-11 bg-black flex items-center justify-center">
                             <Facebook size={30} className="text-white" />
                         </a>
                         
                         {/* Instagram */}
-                        <a href="#" className="w-13 h-13 bg-black flex items-center justify-center">
+                        <a href="#" className="w-11 h-11 bg-black flex items-center justify-center">
                             <Instagram size={30} className="text-white" />
                         </a>
                         
                         {/* YouTube */}
-                        <a href="#" className="w-13 h-13 bg-black flex items-center justify-center">
+                        <a href="#" className="w-11 h-11 bg-black flex items-center justify-center">
                             <YouTube size={30} className="text-white" />
                         </a>
                         
                         {/* Github */}
-                        <a href="#" className="w-13 h-13 bg-black flex items-center justify-center">
+                        <a href="#" className="w-11 h-11 bg-black flex items-center justify-center">
                             <Github size={30} className="text-white" />
                         </a>
                     </div>

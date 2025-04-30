@@ -1,3 +1,4 @@
+"use client"
 import { useState } from 'react';
 import { Heart, MessageCircle } from 'lucide-react';
 
@@ -11,7 +12,7 @@ const InstagramPost = ({ imageUrl, postUrl, defaultLikes = "2.5K", defaultCommen
 
   return (
     <div 
-      className="w-80 h-80 overflow-hidden relative flex-shrink-0 instagram-post"
+      className="absoulute left-0 min-w-0 aspect-square overflow-hidden relative instagram-post"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ borderRadius: 0 }}
@@ -26,7 +27,7 @@ const InstagramPost = ({ imageUrl, postUrl, defaultLikes = "2.5K", defaultCommen
           setImageError(true);
         }}
       />
-            
+      
       {/* Full overlay that shows on hover */}
       {isHovered && (
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center transition-opacity duration-300">

@@ -4,16 +4,12 @@ import { useState, useEffect, Suspense, lazy } from 'react';
 import dynamic from 'next/dynamic';
 import ArticlePreview from '../components/ArticalPreview';
 
-// Lazy load heavy components
 const LazyPromoProducts = lazy(() => import('./PromoProducts'));
 const AboutCard = lazy(() => import('../components/AboutCard'));
 const Destination = lazy(() => import('./Destination'));
 const Newsletter = lazy(() => import('../components/Newsletter'));
 const Advertisement = lazy(() => import('../components/Advertisemnet'));
 const Pagination = lazy(() => import('../components/Pagination'));
-
-// Dynamic import with SSR disabled for Instagram component (typically heavy with images)
-const Instagram = dynamic(() => import('./Instagram'), { ssr: false });
 
 // Loading fallbacks
 const LoadingBox = () => <div className="w-full h-40 bg-gray-100 animate-pulse"></div>;
@@ -128,7 +124,6 @@ const RecentArticles = () => {
             </div>
             
             <Suspense fallback={<LoadingBox />}>
-                <Instagram/>
             </Suspense>
         </section>
     );
