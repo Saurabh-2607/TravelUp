@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation';
 import { memo } from 'react';
 
-const ArticlePreview = ({ id, title, excerpt, category, readingTime, image }) => {
+const ArticalPreview = ({ id, title, excerpt, category, readingTime, image }) => {
     const router = useRouter();
     
     // Function to trim excerpt to exactly 25 words
@@ -38,7 +38,7 @@ const ArticlePreview = ({ id, title, excerpt, category, readingTime, image }) =>
                         <div className="w-1 h-1 bg-zinc-400 rounded-full" />
                         <div className="flex-1 justify-start text-neutral-400 text-base font-normal s-font leading-relaxed">{readingTime} reading</div>
                     </div>
-                    <div className="justify-start text-black text-4xl font-bold leading-10 cursor-pointer hover:underline" onClick={navigateToArticle}>{title}</div>
+                    <div className="justify-start text-black text-4xl font-bold leading-10 cursor-pointer" onClick={navigateToArticle}>{title}</div>
                     <div className="justify-start text-neutral-400 text-lg font-normal s-font leading-relaxed">{trimmedExcerpt}</div>
                 </div>
                 <button 
@@ -52,4 +52,4 @@ const ArticlePreview = ({ id, title, excerpt, category, readingTime, image }) =>
     );
 };
 
-export default memo(ArticlePreview);
+export default memo(ArticalPreview);

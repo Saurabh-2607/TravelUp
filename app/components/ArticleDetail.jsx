@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { Calendar, Clock, ArrowLeft, Share2 } from 'lucide-react';
+import {Facebook, Instagram, Youtube, Github, ArrowLeft, Share2 } from 'lucide-react';
 import Navbar from './Navbar';
+import IntrestingArticles from './IntrestingArticles';
 
 const ArticleDetail = ({ articleId }) => {
   const [article, setArticle] = useState(null);
@@ -45,39 +46,35 @@ const ArticleDetail = ({ articleId }) => {
     return () => controller.abort();
   }, [articleId]);
   
-  const goBack = () => {
-    router.back();
-  };
-  
   const formatDate = (dateString) => {
     if (!dateString) return 'Unknown date';
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
+    // Format as DD.MM.YYYY
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}.${month}.${year}`;
   };
   
   if (loading) return <div className="text-center py-20">Loading article...</div>;
   if (error) return <div className="text-center py-20 text-red-500">Error: {error}</div>;
   if (!article) return <div className="text-center py-20">Article not found</div>;
   
+  // Match the structure from the JSON file
   const { 
     title, 
-    author,
-    authorAvatar,
-    publishedDate, 
+    authorName,
+    submissionDate, 
     category,
     readingTime,
     imageUrl,
-    content,
+    fullContent,
     excerpt
   } = article;
   
   return (
     <article className="min-h-screen">
-      <div className="absolute top-0 left-0 right-0 z-10">
+      <div className="relative">
         <Navbar />
       </div>
       
@@ -96,8 +93,8 @@ const ArticleDetail = ({ articleId }) => {
         
         {/* Back Button */}
         <button 
-          onClick={goBack}
-          className="absolute top-24 left-8 z-20 flex items-center gap-2 text-white hover:text-gray-300 transition-colors"
+          onClick={() => router.back()}
+          className="absolute top-8 left-8 z-20 flex items-center gap-2 text-white hover:text-gray-300 transition-colors"
         >
           <ArrowLeft size={20} />
           <span>Back</span>
@@ -105,88 +102,95 @@ const ArticleDetail = ({ articleId }) => {
         
         {/* Share Button */}
         <button 
-          className="absolute top-24 right-8 z-20 flex items-center gap-2 text-white hover:text-gray-300 transition-colors"
+          className="absolute top-8 right-8 z-20 flex items-center gap-2 text-white hover:text-gray-300 transition-colors"
         >
           <Share2 size={20} />
           <span>Share</span>
         </button>
       </div>
       
-      {/* Article Content */}
-      <div className="container mx-auto px-25 -mt-32 relative z-10">
-        <div className="bg-white p-8 shadow-lg max-w-4xl mx-auto">
-          {/* Category */}
-          <div className="mb-4">
-            <span className="bg-black text-white px-4 py-2 uppercase text-sm font-bold">
-              {category || "Travel"}
-            </span>
-          </div>
+      {/* White Content Box - matches AboutMe page */}
+      <div className='absolute w-3/4 h-auto -mt-40 mx-auto left-0 right-0 bottom-0 bg-white p-8'>
+        <div className='w-full max-w-[706px] mx-auto'>
+          <div className="text-4xl mt-5 font-bold text-center leading-10">{title}</div>
           
-          {/* Title */}
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">{title}</h1>
-          
-          {/* Meta information */}
-          <div className="flex flex-wrap gap-6 mb-8 text-gray-500 s-font">
-            {/* Author info */}
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full overflow-hidden">
-                <Image 
-                  src={authorAvatar || '/Profile.jpg'} 
-                  alt={author || 'Author'} 
-                  width={40} 
-                  height={40} 
-                  className="object-cover"
-                />
+          <div className="flex justify-between s-font items-center mt-6 mb-4">
+            <div className="flex gap-6 items-center text-gray-500">
+              <div className="text-black text-m font-normal">
+                {category}
               </div>
-              <span>{author || 'Anonymous'}</span>
+              <div className="flex items-center gap-2">
+                <span>{readingTime} reading</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span>{formatDate(submissionDate || new Date())}</span>
+              </div>
             </div>
             
-            {/* Date */}
-            <div className="flex items-center gap-2">
-              <Calendar size={16} />
-              <span>{formatDate(publishedDate || new Date().toISOString())}</span>
+            {/* Right section: Social icons */}
+            <div className="flex gap-2">
+              <a href="#" className="w-8 h-8 bg-black flex items-center justify-center">
+                <Facebook size={16} className="text-white" />
+              </a>                        
+              <a href="#" className="w-8 h-8 bg-black flex items-center justify-center">
+                <Instagram size={16} className="text-white" />
+              </a>                        
+              <a href="#" className="w-8 h-8 bg-black flex items-center justify-center">
+                <Youtube size={16} className="text-white" />
+              </a>                        
+              <a href="#" className="w-8 h-8 bg-black flex items-center justify-center">
+                <Github size={16} className="text-white" />
+              </a>
             </div>
-            
-            {/* Reading time */}
-            <div className="flex items-center gap-2">
-              <Clock size={16} />
-              <span>{readingTime || '10 min read'}</span>
-            </div>
-          </div>
-          
-          {/* Article intro */}
-          <div className="text-xl text-gray-700 mb-8 font-medium italic">
-            {excerpt}
-          </div>
-          
-          {/* Article content */}
-          <div className="prose prose-lg max-w-none">
-            {content ? (
-              <div dangerouslySetInnerHTML={{ __html: content }} />
-            ) : (
-              <div>
-                <p>
-                  Traveling has always been one of the most rewarding experiences in my life. The sights, sounds, and tastes of new places open up perspectives that simply cannot be gained any other way. This particular journey took me to places I'd only dreamed about before.
-                </p>
-                <p>
-                  The morning started with the gentle rays of the sun peeking through my window. I had prepared for this trip for months, researching the best spots, learning basic phrases of the local language, and connecting with fellow travelers who had ventured here before.
-                </p>
-                <p>
-                  As I navigated the cobblestone streets, the aroma of freshly baked bread and brewing coffee filled the air. Locals greeted me with warm smiles, seemingly appreciative of my attempts to speak their language, however clumsy. It's these small interactions that often become the most cherished memories.
-                </p>
-                <p>
-                  The highlight of the day was undoubtedly the visit to an ancient monument that stood as a testament to the rich history of the region. As I stood there, taking in the grandeur, I couldn't help but reflect on how many others had stood in this very spot over the centuries, each with their own stories and dreams.
-                </p>
-                <p>
-                  By the end of the day, with tired feet but an enriched soul, I realized that the true value of travel isn't just in the places we see, but in the way they change us. Each journey leaves an indelible mark, shaping our perspectives and broadening our horizons in ways we might never have imagined.
-                </p>
-              </div>
-            )}
           </div>
         </div>
       </div>
       
-      {/* Related articles section could be added here */}
+      <section className="bg-white flex flex-col items-center px-4 py-10 mx-auto">  
+        <div className="w-full max-w-[706px] h-0.5 bg-zinc-200 mb-12" />
+        
+        <p className="text-3xl text-center max-w-[706px] text-gray-700 s-font font-light italic">
+          {excerpt}
+        </p>
+        <div className="w-full h-0.5 max-w-[706px] bg-zinc-200 mt-8 mb-8" />
+        
+        <div className="w-[704px] justify-start text-black text-base font-normal s-font leading-relaxed">
+        {fullContent && (
+                <p className="mb-6">{fullContent}</p>
+            )}
+            
+            <p className="mb-4">
+                Traveling has always been one of the most rewarding experiences in my life. The sights, sounds, and tastes of new places open up perspectives that simply cannot be gained any other way. This particular journey took me to places I'd only dreamed about before.
+            </p>
+            
+            <p className="mb-6">
+                The morning started with the gentle rays of the sun peeking through my window. I had prepared for this trip for months, researching the best spots, learning basic phrases of the local language, and connecting with fellow travelers who had ventured here before.
+            </p>
+            
+            {/* Added image after first two paragraphs */}
+            <div className="w- h-80 relative mb-6">
+                <Image 
+                    src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop"
+                    alt="Scenic travel landscape"
+                    className="object-cover rounded-md"
+                    fill
+                />
+            </div>
+            
+            <p className="mb-4">
+                As I navigated the cobblestone streets, the aroma of freshly baked bread and brewing coffee filled the air. Locals greeted me with warm smiles, seemingly appreciative of my attempts to speak their language, however clumsy. It's these small interactions that often become the most cherished memories.
+            </p>
+            
+            <p className="mb-4">
+                The highlight of the day was undoubtedly the visit to an ancient monument that stood as a testament to the rich history of the region. As I stood there, taking in the grandeur, I couldn't help but reflect on how many others had stood in this very spot over the centuries, each with their own stories and dreams.
+            </p>
+            
+            <p className="mb-4">
+                By the end of the day, with tired feet but an enriched soul, I realized that the true value of travel isn't just in the places we see, but in the way they change us. Each journey leaves an indelible mark, shaping our perspectives and broadening our horizons in ways we might never have imagined.
+            </p>
+        </div>
+      <IntrestingArticles/>
+      </section>
     </article>
   );
 };

@@ -168,12 +168,12 @@ header, nav, .navbar, [class*="navbar"], header *, header > div, header > div > 
   border: none !important;
 }
 
-/* Add a specific override for the navbar */
+/* Change body > header to not be absolutely positioned */
 body > header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
   z-index: 50;
   background: none !important;
 }

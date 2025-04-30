@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Advertisement = () => {
+const Advertisemnet = () => {
     const [destination, setDestination] = useState('');
     const [checkIn, setCheckIn] = useState('');
     const [checkOut, setCheckOut] = useState('');
@@ -48,7 +48,7 @@ const Advertisement = () => {
                     
                     <div className="mb-3 relative">
                         <label 
-                            className={`absolute transition-all duration-200 font-['Open_Sans'] ${
+                            className={`absolute transition-all duration-200 s-font ${
                                 focus.checkIn || checkIn 
                                 ? 'text-sm text-black top-0 left-0' 
                                 : 'text-neutral-400 top-6 left-0'
@@ -70,14 +70,14 @@ const Advertisement = () => {
                                     e.target.type = "text";
                                 }
                             }}
-                            className="w-full pt-5 text-black text-base font-normal font-['Open_Sans'] leading-relaxed focus:outline-none"
+                            className="w-full pt-5 text-black text-base font-normal s-font leading-relaxed focus:outline-none"
                         />
                         <div className="h-0.5 bg-zinc-200 mt-1"></div>
                     </div>
                     
                     <div className="mb-3 relative">
                         <label 
-                            className={`absolute transition-all duration-200 font-['Open_Sans'] ${
+                            className={`absolute transition-all duration-200 s-font ${
                                 focus.checkOut || checkOut 
                                 ? 'text-sm text-black top-0 left-0' 
                                 : 'text-neutral-400 top-6 left-0'
@@ -99,7 +99,7 @@ const Advertisement = () => {
                                     e.target.type = "text";
                                 }
                             }}
-                            className="w-full pt-5 text-black text-base font-normal font-['Open_Sans'] leading-relaxed focus:outline-none"
+                            className="w-full pt-5 text-black text-base font-normal s-font leading-relaxed focus:outline-none"
                         />
                         <div className="h-0.5 bg-zinc-200 mt-1"></div>
                     </div>
@@ -111,4 +111,4 @@ const Advertisement = () => {
     )
 };
 
-export default Advertisement;
+export default Advertisemnet;

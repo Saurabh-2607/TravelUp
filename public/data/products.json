@@ -1,108 +1,54 @@
 {
-    "products": [
-        {
-            "id": "TUP001PRO",
-            "name": "Exploring Paris Guide",
-            "price": 25,
-            "description": "A comprehensive guide to exploring the City of Light, from famous landmarks to hidden gems.",
-            "author": "Sophie Martin",
-            "pageCount": 352,
-            "publisher": "World Travelers Press",
-            "coverImage": "https://images.unsplash.com/photo-1598618023850-728cd1fc0550?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHJhdmVsJTIwZ3VpZCUyMGJvb2tzfGVufDB8fDB8fHww",
-            "categories": ["Europe", "France", "City Guide"],
-            "rating": 4.8,
-            "inStock": true
-        },
-        {
-            "id": "TUP002PRO",
-            "name": "Tokyo on a Shoestring",
-            "price": 20,
-            "description": "Navigate Tokyo affordably with insider tips on cheap eats, free attractions, and discount accommodations.",
-            "author": "Kenji Nakamura",
-            "pageCount": 284,
-            "publisher": "Frugal Wanderer Books",
-            "coverImage": "https://images.unsplash.com/photo-1577921195316-75c17edfac6e?q=80&w=1064&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "categories": ["Asia", "Japan", "Budget Travel"],
-            "rating": 4.6,
-            "inStock": true
-        },
-        {
-            "id": "TUP003PRO",
-            "name": "Hiking Andes Guide",
-            "price": 30,
-            "description": "Essential information for planning and executing memorable treks through the Andean mountain range.",
-            "author": "Carlos Mendoza",
-            "pageCount": 412,
-            "publisher": "Mountain Explorer Publications",
-            "coverImage": "https://images.unsplash.com/photo-1636815529433-d1cd851d5d50?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "categories": ["South America", "Hiking", "Adventure"],
-            "rating": 4.9,
-            "inStock": true
-        },
-        {
-            "id": "TUP004PRO",
-            "name": "African Safari Guide",
-            "price": 35,
-            "description": "Everything you need to know about planning the perfect safari across Africa's most stunning wildlife reserves.",
-            "author": "Nelson Okoro",
-            "pageCount": 386,
-            "publisher": "Wild Journey Press",
-            "coverImage": "https://plus.unsplash.com/premium_photo-1716937389348-8a47df294f24?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "categories": ["Africa", "Wildlife", "Safari"],
-            "rating": 4.7,
-            "inStock": true
-        },
-        {
-            "id": "TUP005PRO",
-            "name": "New York Treasures",
-            "price": 23,
-            "description": "",
-            "author": "Jessica Klein",
-            "pageCount": 328,
-            "publisher": "Urban Adventures Books",
-            "coverImage": "https://images.unsplash.com/photo-1627348354048-710c6f9a2811?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "categories": ["North America", "USA", "City Guide"],
-            "rating": 4.5,
-            "inStock": true
-        },
-        {
-            "id": "TUP006PRO",
-            "name": "Southeast Asia Backpacking",
-            "price": 19,
-            "description": "The essential companion for budget travelers exploring Thailand, Vietnam, Cambodia, and more.",
-            "author": "Ryan Thompson",
-            "pageCount": 396,
-            "publisher": "Nomad's Handbook",
-            "coverImage": "https://images.unsplash.com/photo-1515476084989-0c8f073ea169?q=80&w=1147&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "categories": ["Asia", "Budget Travel", "Backpacking"],
-            "rating": 4.8,
-            "inStock": false
-        },
-        {
-            "id": "TUP007PRO",
-            "name": "Italian Cuisine Journey",
-            "price": 27,
-            "description": "Explore Italy through its food with this guide to authentic regional dishes and where to find them.",
-            "author": "Marco Rossi",
-            "pageCount": 342,
-            "publisher": "Culinary Travels",
-            "coverImage": "https://plus.unsplash.com/premium_photo-1684407617236-9baf926474ad?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "categories": ["Europe", "Italy", "Food & Drink"],
-            "rating": 4.9,
-            "inStock": true
-        },
-        {
-            "id": "TUP008PRO",
-            "name": "Australian Outback Adventures",
-            "price": 27,
-            "description": "Your guide to exploring Australia's vast interior, from Uluru to the remote cattle stations.",
-            "author": "Emma Wilson",
-            "pageCount": 368,
-            "publisher": "Down Under Publications",
-            "coverImage": "https://images.unsplash.com/photo-1623217626710-dcec998c91e5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "categories": ["Australia", "Outback", "Adventure"],
-            "rating": 4.6,
-            "inStock": true
-        }
-    ]
+  "products": [
+    {
+      "id": "product-1",
+      "name": "Complete Guide to Paris",
+      "price": 30,
+      "coverImage": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80",
+      "author": "Saurabh Sharma",
+      "region": "Europe",
+      "description": "The ultimate travel guide to the city of lights.",
+      "categories": ["Cities", "Guides"]
+    },
+    {
+      "id": "product-2",
+      "name": "Wildlife of Africa",
+      "price": 35,
+      "coverImage": "https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1168&q=80",
+      "author": "Saurabh Sharma",
+      "region": "Africa",
+      "description": "Explore the amazing wildlife of the African continent.",
+      "categories": ["Wildlife", "Guides"]
+    },
+    {
+      "id": "product-3",
+      "name": "Journey Through Japan",
+      "price": 28,
+      "coverImage": "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "author": "Saurabh Sharma",
+      "region": "Asia",
+      "description": "A comprehensive guide to experiencing Japanese culture.",
+      "categories": ["Cities", "Culture"]
+    },
+    {
+      "id": "product-4",
+      "name": "Mountain Hiking Trails",
+      "price": 25,
+      "coverImage": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "author": "Saurabh Sharma",
+      "region": "Global",
+      "description": "Discover the world's most beautiful hiking trails.",
+      "categories": ["Mountains", "Guides"]
+    },
+    {
+      "id": "product-5",
+      "name": "Italian Cuisine Tour",
+      "price": 20,
+      "coverImage": "https://images.unsplash.com/photo-1498579150354-977475b7ea0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "author": "Saurabh Sharma",
+      "region": "Europe",
+      "description": "A gastronomic journey through Italy's finest dishes.",
+      "categories": ["Foods", "Culture"]
+    }
+  ]
 }

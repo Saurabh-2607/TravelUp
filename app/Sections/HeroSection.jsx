@@ -101,11 +101,11 @@ export default function HeroSection() {
             .then(response => response.json())
             .then(data => {
                 const articleSlides = data.slice(0, 5).map(article => ({
-                    id: article.id,
-                    title: article.title,
-                    excerpt: article.excerpt,
-                    image: article.imageUrl,
-                    category: article.category
+                    id: article.id || `article-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+                    title: article.title || "Untitled Article",
+                    excerpt: article.excerpt || "No excerpt available",
+                    image: article.imageUrl || "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3",
+                    category: article.category || "Travel"
                 }));
                 setSlides(articleSlides);
                 setLoading(false);
@@ -137,7 +137,7 @@ export default function HeroSection() {
     const { id, title, excerpt, image, category } = slides[current];
 
     return (
-        <div className="relative w-full h-screen overflow-hidden bg-gray-100">
+        <div className="relative w-full h-screen overflow-hidden bg-gray-100" style={{ zIndex: 1 }}>
             <div
                 className={`absolute inset-0 transition-opacity duration-500 ${
                     fade ? "opacity-0" : "opacity-100"

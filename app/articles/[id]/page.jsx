@@ -20,7 +20,7 @@ const LoadingArticle = () => (
 export async function generateMetadata({ params }) {
   try {
     // Fetch article data
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || ''}/data/articles.json`);
+    const res = await fetch(`/data/articles.json`);
     const articles = await res.json();
     const article = articles.find(a => a.id === params.id);
     

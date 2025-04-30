@@ -1,5 +1,4 @@
 import "./globals.css";
-import { Suspense } from 'react';
 import Footer from "./components/Footer";
 
 export const metadata = {
@@ -8,9 +7,6 @@ export const metadata = {
   viewport: "width=device-width, initial-scale=1",
   themeColor: "#ffffff"
 };
-
-// Create a loading fallback
-const FooterFallback = () => <div className="h-40 bg-gray-100"></div>;
 
 export default function RootLayout({ children }) {
   return (
@@ -23,25 +19,14 @@ export default function RootLayout({ children }) {
         {/* Preload critical assets */}
         <link rel="preload" as="fetch" href="/data/articles.json" crossOrigin="anonymous" />
         
-        {/* Add FontDisplay settings */}
-        <style type="text/css" dangerouslySetInnerHTML={{ __html: `
-          @font-face {
-            font-family: 'Cormorant Garamond';
-            font-display: swap;
-          }
-          @font-face {
-            font-family: 'Open Sans';
-            font-display: swap;
-          }
-        `}} />
+        {/* Font imports */}
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className="flex flex-col min-h-screen">
         <div className="flex-grow flex flex-col">
           {children}
         </div>
-        <Suspense fallback={<FooterFallback />}>
-          <Footer />
-        </Suspense>
+        <Footer />
       </body>
     </html>
   );

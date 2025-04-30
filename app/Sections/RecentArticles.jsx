@@ -1,14 +1,13 @@
 "use client";
 
 import { useState, useEffect, Suspense, lazy } from 'react';
-import dynamic from 'next/dynamic';
-import ArticlePreview from '../components/ArticalPreview';
+import ArticalPreview from '../components/ArticalPreview';
 
 const LazyPromoProducts = lazy(() => import('./PromoProducts'));
 const AboutCard = lazy(() => import('../components/AboutCard'));
 const Destination = lazy(() => import('./Destination'));
 const Newsletter = lazy(() => import('../components/Newsletter'));
-const Advertisement = lazy(() => import('../components/Advertisemnet'));
+const Advertisemnet = lazy(() => import('../components/Advertisemnet'));
 const Pagination = lazy(() => import('../components/Pagination'));
 
 // Loading fallbacks
@@ -79,7 +78,7 @@ const RecentArticles = () => {
                 <div className="flex-1 flex flex-col gap-12">
                     {/* Top 3 Articles */}
                     {articles.slice(0, 3).map((article) => (
-                        <ArticlePreview key={article.id} {...article} />
+                        <ArticalPreview key={article.id} {...article} />
                     ))}
 
                     {/* Promo Section */}
@@ -91,7 +90,7 @@ const RecentArticles = () => {
 
                     {/* Remaining Articles */}
                     {articles.slice(3).map((article) => (
-                        <ArticlePreview key={article.id} {...article} />
+                        <ArticalPreview key={article.id} {...article} />
                     ))}
 
                     {/* Pagination */}
@@ -118,7 +117,7 @@ const RecentArticles = () => {
                     </Suspense>
                     
                     <Suspense fallback={<LoadingBox />}>
-                        <Advertisement/>
+                        <Advertisemnet/>
                     </Suspense>
                 </aside>
             </div>

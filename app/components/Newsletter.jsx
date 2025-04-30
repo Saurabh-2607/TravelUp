@@ -14,7 +14,7 @@ const Newsletter = () => {
             <div className="w-full mx-auto">
                 <div className="text-center text-black text-3xl font-bold font-['Cormorant_Garamond'] leading-10">Newsletter</div>
                 
-                <div className="text-center text-neutral-400 text-base font-normal leading-5 mt-2">
+                <div className="text-center s-font text-neutral-400 text-base font-normal leading-5 mt-2">
                     Subscribe to receive exclusive content updates, travel & photo tips!
                 </div>
                 
