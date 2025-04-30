@@ -1,6 +1,14 @@
+import { memo } from 'react';
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+// Default values for when props are not provided
+const defaultProps = {
+    currentPage: 1,
+    totalPages: 5,
+    onPageChange: () => {}
+};
+
+const Pagination = ({ currentPage = 1, totalPages = 5, onPageChange = () => {} }) => {
     // Function to handle page change
     const handlePageChange = (page) => {
         if (page >= 1 && page <= totalPages) {
@@ -48,6 +56,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         return pages;
     };
 
+    // If there's only one page, don't render pagination
+    if (totalPages <= 1) return null;
+
     return (
         <div className="flex items-center justify-center">
             {/* Previous button */}
@@ -58,7 +69,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                 aria-label="Previous page"
             >
                 <div className="w-6 h-6 text-white flex items-center justify-center">
-                <ChevronLeft/>
+                    <ChevronLeft/>
                 </div>
             </button>
             
@@ -94,11 +105,12 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                 aria-label="Next page"
             >
                 <div className="w-6 h-6 text-white flex items-center justify-center">
-                <ChevronRight/>
+                    <ChevronRight/>
                 </div>
             </button>
         </div>
     );
 };
 
-export default Pagination;
+// Memoize to prevent unnecessary re-renders
+export default memo(Pagination);

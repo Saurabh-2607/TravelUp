@@ -1,6 +1,9 @@
 "use client"
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import ProductsCards from "../components/ProductsCards";
+
+// Memoize ProductsCards to prevent unnecessary re-renders
+const MemoizedProductsCard = memo(ProductsCards);
 
 const PromoProducts = () => {
     const [products, setProducts] = useState([]);
@@ -8,15 +11,18 @@ const PromoProducts = () => {
     const [error, setError] = useState(null);
     
     useEffect(() => {
-        fetch('/data/products.json')
-            .then(response => {
+        // Use AbortController to handle component unmounting
+        const controller = new AbortController();
+        const signal = controller.signal;
+        
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('/data/products.json', { signal });
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.json();
-            })
-            .then(data => {
-                // Access the products array from the data object
+                const data = await response.json();
+                
                 if (data.products && Array.isArray(data.products)) {
                     const productsList = data.products.slice(0, 5).map(product => ({
                         id: product.id,
@@ -33,13 +39,21 @@ const PromoProducts = () => {
                 } else {
                     throw new Error('Invalid data structure');
                 }
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error("Error fetching products:", error);
-                setLoading(false);
-                setError("Failed to load Products");
-            });
+            } catch (error) {
+                if (error.name !== 'AbortError') {
+                    console.error("Error fetching products:", error);
+                    setError("Failed to load Products");
+                }
+            } finally {
+                if (!signal.aborted) {
+                    setLoading(false);
+                }
+            }
+        };
+        
+        fetchProducts();
+        
+        return () => controller.abort();
     }, []);
     
     if (loading) return <div className="text-center py-10">Loading Products...</div>;
@@ -53,7 +67,7 @@ const PromoProducts = () => {
                 </div>
                 <div className="flex flex-wrap justify-left ml-8 gap-5">
                     {products.map((product) => (
-                        <ProductsCards
+                        <MemoizedProductsCard
                             key={product.id}
                             title={product.title || `Mystery of ${product.region}`}
                             price={product.price}

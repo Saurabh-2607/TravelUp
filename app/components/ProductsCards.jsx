@@ -1,4 +1,7 @@
+import { memo } from 'react';
+
 const ProductsCards = ({title, price, imageurl}) => {
+    // Use intersection observer to lazy load images
     const handleImageError = (e) => {
         console.error(`Failed to load image for "${title}"`);
         e.target.onerror = null;
@@ -16,6 +19,8 @@ const ProductsCards = ({title, price, imageurl}) => {
                     backgroundImage: `url(${imageurl || '/placeholder-image.jpg'})`,
                 }}
                 onError={handleImageError}
+                loading="lazy"
+                data-src={imageurl}
             >
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent"></div>
                 <div className="absolute px-3 bottom-4 inline-flex justify-start items-start gap-2 overflow-hidden">
@@ -30,4 +35,5 @@ const ProductsCards = ({title, price, imageurl}) => {
     );
 }
 
-export default ProductsCards;
+// Memoize component to prevent unnecessary re-renders
+export default memo(ProductsCards);
