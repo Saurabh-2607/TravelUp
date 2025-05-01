@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
+import Navbar from './Navbar';
 
 const FullscreenMenu = ({ onClose, isOpen }) => {
     const [email, setEmail] = useState('');
@@ -57,24 +58,30 @@ const FullscreenMenu = ({ onClose, isOpen }) => {
             transition: { duration: 0.5 }
         }
     };
-    
+
     return (
         <AnimatePresence>
             {isOpen && (
                 <motion.div
-                    className="fixed inset-0 w-full h-full z-150 overflow-hidden"
+                    className="fixed inset-0 w-full h-full z-50 overflow-hidden"
                     initial="hidden"
                     animate="visible"
                     exit="exit"
                     variants={menuVariants}
                 >
+                    {/* Background overlay */}
+                    <div className="absolute inset-0 bg-black opacity-95" />
+                    
+                    {/* Navbar - positioned with higher z-index */}
+                    <div className="absolute top-0 left-0 right-0 z-[100]">
+                        <Navbar forceMenuOpen={true} onClose={onClose} />
+                    </div>
+                    
                     <div className="w-full h-full flex justify-center items-center pt-24">
-                        <div className="absolute inset-0 bg-black opacity-95" />
-                        
                         {/* Add a div that blocks interactions with elements behind */}
-                        <div className="absolute inset-0" onClick={onClose}></div>
+                        <div className="absolute inset-0 z-[60]" onClick={onClose}></div>
                         
-                        <div className="z-10 flex flex-col md:flex-row w-full max-w-7xl px-6 md:px-16 relative">
+                        <div className="z-[70] flex flex-col md:flex-row w-full max-w-7xl px-6 md:px-16 relative">
                             
                             <motion.div 
                                 className="w-full md:w-1/2 flex flex-col justify-start items-start gap-8 md:gap-12 my-10 md:my-0"
@@ -99,7 +106,7 @@ const FullscreenMenu = ({ onClose, isOpen }) => {
                                             setTimeout(onClose, 300);
                                         }}>
                                             <div 
-                                                className={`text-${activeItem === item.name ? 'white' : 'neutral-400'} text-4xl md:text-6xl font-bold font-['Cormorant_Garamond'] hover:text-white transition-colors duration-300`}
+                                                className={`${activeItem === item.name ? 'text-white' : 'text-neutral-400'} text-4xl md:text-6xl font-bold font-['Cormorant_Garamond'] hover:text-white transition-colors duration-300`}
                                             >
                                                 {item.name}
                                             </div>

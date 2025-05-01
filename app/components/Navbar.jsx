@@ -1,11 +1,11 @@
 'use client';
-import { Menu, Search } from "lucide-react";
+import { Menu, Search, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import FullscreenMenu from "./FullScreenMenu";
 
-const Navbar = () => {
+const Navbar = ({ forceMenuOpen, onClose }) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
@@ -38,8 +38,11 @@ const Navbar = () => {
         };
     }, [menuOpen]);
     
-    // Determine text color based on menu state
-    const textColor = menuOpen ? 'text-white' : 'text-black';
+    // Determine text color based on menu state or forceMenuOpen prop
+    const textColor = forceMenuOpen || menuOpen ? 'text-white' : 'text-black';
+    
+    // Determine which icon to show based on menu state or forceMenuOpen
+    const showCloseIcon = forceMenuOpen || menuOpen;
     
     const mobileMenuOverlay = menuOpen ? (
         <div 
@@ -51,10 +54,7 @@ const Navbar = () => {
                         onClick={() => setMenuOpen(false)}
                         className="text-white p-2"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
+                        <X className="w-6 h-6" />
                     </button>
                 </div>
                 
@@ -69,27 +69,42 @@ const Navbar = () => {
             <nav className="relative ml-25 mr-25 py-4">
                 <div className="container mx-auto px-4 flex justify-between items-center">
                     <div 
-                        className="text-black cursor-pointer"
-                        onClick={() => setMenuOpen(true)}
+                        className={`${textColor} cursor-pointer`}
+                        onClick={() => {
+                            // Don't toggle if forceMenuOpen is true
+                            if (!forceMenuOpen) {
+                                setMenuOpen(!menuOpen);
+                            } else {
+                                // When in FullscreenMenu, clicking X should close the menu
+                                onClose && onClose();
+                            }
+                        }}
                     >
-                        <Menu className="w-6 h-6" />
+                        {showCloseIcon ? (
+                            <X className="w-6 h-6" />
+                        ) : (
+                            <Menu className="w-6 h-6" />
+                        )}
                     </div>
                     <a href="/">
-
-                    <h1 className="text-2xl font-bold text-black">
+                    <h1 className={`text-2xl font-bold ${textColor}`}>
                         TravelUp
                     </h1>
                     </a>
                     
-                    <div className="text-black cursor-pointer">
+                    <div className={`${textColor} cursor-pointer`}>
                         <Search className="w-6 h-6" />
                     </div>
                 </div>
             </nav>
 
-            {mobileMenuOverlay}
-
-            <FullscreenMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+            {/* Only render FullscreenMenu if not already inside one (prevent circular rendering) */}
+            {!forceMenuOpen && (
+                <>
+                    {mobileMenuOverlay}
+                    <FullscreenMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+                </>
+            )}
         </>
     );
 };
