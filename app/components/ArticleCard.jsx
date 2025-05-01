@@ -42,7 +42,7 @@ const ArticleCard = ({ article }) => {
                 </div>
                 
                 <Link href={`/articles/${id}`} className="w-40 h-14 relative">
-                    <div className="w-40 h-14 bg-black flex items-center justify-center">
+                    <div className="w-35 h-14 bg-black flex items-center justify-center">
                         <span className="text-center text-white text-base font-bold s-font leading-normal">Read more</span>
                     </div>
                 </Link>

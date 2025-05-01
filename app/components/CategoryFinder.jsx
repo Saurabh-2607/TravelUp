@@ -80,10 +80,36 @@ export const getCategories = async () => {
     
     // Sort by count (descending)
     return Object.entries(categoryCounts)
-      .sort((a, b) => b[1] - a[1]) // Changed from a[1] - b[1]
+      .sort((a, b) => b[1] - a[1]) // Sort by count (descending)
       .map(([category]) => category);
   } catch (error) {
     console.error('Error in getCategories:', error);
+    return [];
+  }
+};
+
+// New function to get categories with counts in descending order
+export const getCategoriesWithCounts = async () => {
+  try {
+    const response = await fetch('/data/articles.json');
+    if (!response.ok) throw new Error('Failed to fetch articles');
+    
+    const articlesData = await response.json();
+    
+    // Count occurrences of each category
+    const categoryCounts = articlesData.reduce((acc, article) => {
+      const category = article.category;
+      if (category) {
+        acc[category] = (acc[category] || 0) + 1;
+      }
+      return acc;
+    }, {});
+    
+    // Return array of [category, count] pairs sorted by count (descending)
+    return Object.entries(categoryCounts)
+      .sort((a, b) => b[1] - a[1]);
+  } catch (error) {
+    console.error('Error in getCategoriesWithCounts:', error);
     return [];
   }
 };

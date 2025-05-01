@@ -25,15 +25,15 @@ export default function Categories() {
                 <Navbar />
             </div>
             
-            <main className='pt-24 px-25'>
-                <div className='mb-10'>
+            <main className='pt-8 px-25'>
+                <div className='mb-5'>
                     <h1 className='text-4xl font-bold'>Categories</h1>
                 </div>
                 
                 {loading ? (
                     <p>Loading categories...</p>
                 ) : (
-                    <div className='space-y-32'>
+                    <div className=''>
                         {categories.map(category => (
                             <CategorySorted key={category} category={category} />
                         ))}
