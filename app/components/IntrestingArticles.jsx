@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import ArticleCard from './ArticleCard';
 
-const IntrestingArticles = () => {
+const IntrestingArticles = ({ showTitle = true }) => {
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
     const router = useRouter();
@@ -37,9 +37,9 @@ const IntrestingArticles = () => {
     if (loading) return <div className="text-center py-6">Loading articles...</div>;
 
     return (
-        <div className="w-3/4 ml-25 mr-25 py-8">
-            <h2 className="text-3xl font-bold mb-6">Interesting Articles to Read</h2>
-            <div className="grid lg:grid-cols-3 gap-25">
+        <div className="w-full py-8">
+            {showTitle && <h2 className="text-3xl font-bold mb-8">You might also like</h2>}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {articles.map((article) => (
                     <ArticleCard 
                         key={article.id} 

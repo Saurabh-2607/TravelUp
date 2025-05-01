@@ -187,7 +187,10 @@ const ArticleDetail = ({ articleId }) => {
             By the end of the day, with tired feet but an enriched soul, I realized that the true value of travel isn't just in the places we see, but in the way they change us. Each journey leaves an indelible mark, shaping our perspectives and broadening our horizons in ways we might never have imagined.
           </p>
         </div>
-      <IntrestingArticles/>
+        
+        {/* Add a divider before Interesting Articles */}
+        
+          <IntrestingArticles />
       </section>
     </div>
   );
