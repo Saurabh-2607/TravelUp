@@ -11,6 +11,7 @@ const ArticleDetail = ({ articleId }) => {
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [imgSrc, setImgSrc] = useState('');
   const router = useRouter();
   
   useEffect(() => {
@@ -46,6 +47,19 @@ const ArticleDetail = ({ articleId }) => {
     return () => controller.abort();
   }, [articleId]);
   
+  useEffect(() => {
+    if (article && article.imageUrl) {
+      setImgSrc(article.imageUrl);
+    } else if (article && article.title) {
+      setImgSrc(`https://picsum.photos/seed/${article.title}/800/600`);
+    }
+  }, [article]);
+  
+  // Function to handle image loading errors
+  const handleImageError = () => {
+      setImgSrc(`https://picsum.photos/seed/${article.title}/800/600`);
+  };
+  
   const formatDate = (dateString) => {
     if (!dateString) return 'Unknown date';
     const date = new Date(dateString);
@@ -73,44 +87,26 @@ const ArticleDetail = ({ articleId }) => {
   } = article;
   
   return (
-    <article className="min-h-screen">
-      <div className="relative">
-        <Navbar />
-      </div>
-      
-      {/* Hero Section */}
-      <div className="relative w-full h-[70vh]">
-        <Image
-          src={imageUrl || '/placeholder-image.jpg'}
-          alt={title}
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-          quality={90}
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+    <div className="flex flex-col items-center">
+      <div className="relative w-full h-screen">
+        <div className="absolute inset-0 z-10">
+          <Navbar/>
+        </div>
         
-        {/* Back Button */}
-        <button 
-          onClick={() => router.back()}
-          className="absolute top-8 left-8 z-20 flex items-center gap-2 text-white hover:text-gray-300 transition-colors"
-        >
-          <ArrowLeft size={20} />
-          <span>Back</span>
-        </button>
+        <div className="absolute inset-0">
+          <Image
+            src={imgSrc}
+            alt={title}
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+            quality={90}
+            onError={handleImageError}
+          />
+        </div>
         
-        {/* Share Button */}
-        <button 
-          className="absolute top-8 right-8 z-20 flex items-center gap-2 text-white hover:text-gray-300 transition-colors"
-        >
-          <Share2 size={20} />
-          <span>Share</span>
-        </button>
-      </div>
-      
-      {/* White Content Box - matches AboutMe page */}
-      <div className='absolute w-3/4 h-auto -mt-40 mx-auto left-0 right-0 bottom-0 bg-white p-8'>
+        <div className='absolute w-3/4 h-auto -mt-40 mx-auto left-0 right-0 bottom-0 bg-white p-8'>
         <div className='w-full max-w-[706px] mx-auto'>
           <div className="text-4xl mt-5 font-bold text-center leading-10">{title}</div>
           
@@ -145,6 +141,8 @@ const ArticleDetail = ({ articleId }) => {
           </div>
         </div>
       </div>
+      </div>
+
       
       <section className="bg-white flex flex-col items-center px-4 py-10 mx-auto">  
         <div className="w-full max-w-[706px] h-0.5 bg-zinc-200 mb-12" />
@@ -155,43 +153,43 @@ const ArticleDetail = ({ articleId }) => {
         <div className="w-full h-0.5 max-w-[706px] bg-zinc-200 mt-8 mb-8" />
         
         <div className="w-[704px] justify-start text-black text-base font-normal s-font leading-relaxed">
-        {fullContent && (
-                <p className="mb-6">{fullContent}</p>
-            )}
-            
-            <p className="mb-4">
-                Traveling has always been one of the most rewarding experiences in my life. The sights, sounds, and tastes of new places open up perspectives that simply cannot be gained any other way. This particular journey took me to places I'd only dreamed about before.
-            </p>
-            
-            <p className="mb-6">
-                The morning started with the gentle rays of the sun peeking through my window. I had prepared for this trip for months, researching the best spots, learning basic phrases of the local language, and connecting with fellow travelers who had ventured here before.
-            </p>
-            
-            {/* Added image after first two paragraphs */}
-            <div className="w- h-80 relative mb-6">
-                <Image 
-                    src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop"
-                    alt="Scenic travel landscape"
-                    className="object-cover rounded-md"
-                    fill
-                />
-            </div>
-            
-            <p className="mb-4">
-                As I navigated the cobblestone streets, the aroma of freshly baked bread and brewing coffee filled the air. Locals greeted me with warm smiles, seemingly appreciative of my attempts to speak their language, however clumsy. It's these small interactions that often become the most cherished memories.
-            </p>
-            
-            <p className="mb-4">
-                The highlight of the day was undoubtedly the visit to an ancient monument that stood as a testament to the rich history of the region. As I stood there, taking in the grandeur, I couldn't help but reflect on how many others had stood in this very spot over the centuries, each with their own stories and dreams.
-            </p>
-            
-            <p className="mb-4">
-                By the end of the day, with tired feet but an enriched soul, I realized that the true value of travel isn't just in the places we see, but in the way they change us. Each journey leaves an indelible mark, shaping our perspectives and broadening our horizons in ways we might never have imagined.
-            </p>
+          {fullContent && (
+            <p className="mb-6">{fullContent}</p>
+          )}
+          
+          <p className="mb-4">
+            Traveling has always been one of the most rewarding experiences in my life. The sights, sounds, and tastes of new places open up perspectives that simply cannot be gained any other way. This particular journey took me to places I'd only dreamed about before.
+          </p>
+          
+          <p className="mb-6">
+            The morning started with the gentle rays of the sun peeking through my window. I had prepared for this trip for months, researching the best spots, learning basic phrases of the local language, and connecting with fellow travelers who had ventured here before.
+          </p>
+          
+          {/* Added image after first two paragraphs */}
+          <div className="w-full h-80 relative mb-6">
+            <Image 
+              src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop"
+              alt="Scenic travel landscape"
+              className="object-cover rounded-md"
+              fill
+            />
+          </div>
+          
+          <p className="mb-4">
+            As I navigated the cobblestone streets, the aroma of freshly baked bread and brewing coffee filled the air. Locals greeted me with warm smiles, seemingly appreciative of my attempts to speak their language, however clumsy. It's these small interactions that often become the most cherished memories.
+          </p>
+          
+          <p className="mb-4">
+            The highlight of the day was undoubtedly the visit to an ancient monument that stood as a testament to the rich history of the region. As I stood there, taking in the grandeur, I couldn't help but reflect on how many others had stood in this very spot over the centuries, each with their own stories and dreams.
+          </p>
+          
+          <p className="mb-4">
+            By the end of the day, with tired feet but an enriched soul, I realized that the true value of travel isn't just in the places we see, but in the way they change us. Each journey leaves an indelible mark, shaping our perspectives and broadening our horizons in ways we might never have imagined.
+          </p>
         </div>
       <IntrestingArticles/>
       </section>
-    </article>
+    </div>
   );
 };
 

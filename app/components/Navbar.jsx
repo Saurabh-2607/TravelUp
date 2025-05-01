@@ -57,22 +57,7 @@ const Navbar = () => {
                         </svg>
                     </button>
                 </div>
-                <nav className="flex-1 flex flex-col justify-center items-center">
-                    <ul className="space-y-6 text-center">
-                        <li>
-                            <Link href="/" className="text-white text-2xl hover:text-gray-300">Home</Link>
-                        </li>
-                        <li>
-                            <Link href="/about" className="text-white text-2xl hover:text-gray-300">About me</Link>
-                        </li>
-                        <li>
-                            <Link href="/categories" className="text-white text-2xl hover:text-gray-300">Categories</Link>
-                        </li>
-                        <li>
-                            <Link href="/contact" className="text-white text-2xl hover:text-gray-300">Contact</Link>
-                        </li>
-                    </ul>
-                </nav>
+                
                 <div className="p-8">
                 </div>
             </div>
