@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react';
 
 const ArticleCard = ({ article }) => {
     const { id, title, excerpt, imageUrl, category, readingTime = '8 minutes reading' } = article;
+    const [imgSrc, setImgSrc] = useState(imageUrl);
     
     // Function to trim excerpt to fit available space
     const trimExcerpt = (text) => {
@@ -13,19 +15,26 @@ const ArticleCard = ({ article }) => {
         return words.slice(0, 18).join(' ') + '...';
     };
     
+    // Function to handle image load errors
+    const handleImageError = () => {
+        // Switch to the fallback image if the original fails
+        setImgSrc(`https://picsum.photos/seed/${title}/800/600`);
+    };
+    
     const trimmedExcerpt = trimExcerpt(excerpt);
     
     return (
         <div className="w-[400px] h-[500px] relative">
             <div className="relative w-full h-52">
                 <Image 
-                    src={imageUrl} 
+                    src={imgSrc}
                     alt={title}
                     fill
                     sizes="460px"
                     priority={false}
                     className="object-cover w-full h-full"
                     style={{ objectFit: 'cover' }}
+                    onError={handleImageError}
                 />
                 <div className="w-full h-52 absolute top-0 left-0 bg-black/30" />
             </div>

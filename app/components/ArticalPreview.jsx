@@ -23,7 +23,7 @@ const ArticalPreview = ({ id, title, excerpt, category, readingTime, image }) =>
     return (
         <div className="inline-flex justify-start items-center gap-5">
             <div 
-                className="w-[350px] h-[320px] bg-black/30 relative overflow-hidden flex-shrink-0 cursor-pointer" 
+                className="w-[350px] h-full bg-black/30 relative overflow-hidden flex-shrink-0 cursor-pointer" 
                 style={{
                     backgroundImage: image ? `url(${image})` : 'none',
                     backgroundSize: 'cover',

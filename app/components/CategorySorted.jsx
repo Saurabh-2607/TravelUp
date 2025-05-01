@@ -63,7 +63,7 @@ const CategorySorted = ({ category }) => {
     }
     
     return (
-        <div className="mb-8">
+        <div className="mb-10">
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-3xl font-bold">{category}</h2>
                 <div className="flex gap-2 items-center">
