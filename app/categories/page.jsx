@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import CategorySorted from '../components/CategorySorted';
-import { getCategories } from '../components/CategoryFinder';
-
+import { getCategoriesByPopularity } from '../components/CategoryFinder';
 
 export default function Categories() {
     const [categories, setCategories] = useState([]);
@@ -11,7 +10,8 @@ export default function Categories() {
 
     useEffect(() => {
         const loadCategories = async () => {
-            const categoryList = await getCategories();
+            // Use getCategoriesByPopularity instead of getCategories to sort by article count
+            const categoryList = await getCategoriesByPopularity();
             setCategories(categoryList);
             setLoading(false);
         };
