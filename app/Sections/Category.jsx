@@ -1,14 +1,31 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CategoryTemplet from "../components/CategoryTemplet.jsx";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
+import { getCategoriesByPopularity } from "../components/CategoryFinder";
 
 const Category = () => {
 const [scrollPosition, setScrollPosition] = React.useState(0);
 const scrollContainerRef = React.useRef(null);
 const [selectedCategory, setSelectedCategory] = React.useState(null);
+const [categories, setCategories] = useState([]);
+const [loading, setLoading] = useState(true);
+
+useEffect(() => {
+    const loadCategories = async () => {
+        try {
+            const fetchedCategories = await getCategoriesByPopularity();
+            setCategories(fetchedCategories);
+            setLoading(false);
+        } catch (error) {
+            console.error("Error loading categories:", error);
+            setLoading(false);
+        }
+    };
+    
+    loadCategories();
+}, []);
 
 const scrollLeft = () => {
     if (scrollContainerRef.current) {
@@ -59,62 +76,17 @@ return (
                         isSelected={selectedCategory === "All"}
                         onClick={() => handleCategoryClick("All")}
                     />
-                    <CategoryTemplet 
-                        title="Mountains"
-                        imageUrl="https://images.unsplash.com/photo-1494806812796-244fe51b774d?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                        className="flex-shrink-0"
-                        isSelected={selectedCategory === "Mountains"}
-                        onClick={() => handleCategoryClick("Mountains")}
-                    />
-                    <CategoryTemplet 
-                        title="Foods"
-                        imageUrl="https://images.unsplash.com/photo-1494806812796-244fe51b774d?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                        className="flex-shrink-0"
-                        isSelected={selectedCategory === "Foods"}
-                        onClick={() => handleCategoryClick("Foods")}
-                    />
-                    <CategoryTemplet 
-                        title="Guides"
-                        imageUrl="https://images.unsplash.com/photo-1494806812796-244fe51b774d?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                        className="flex-shrink-0"
-                        isSelected={selectedCategory === "Guides"}
-                        onClick={() => handleCategoryClick("Guides")}
-                    />
-                    <CategoryTemplet 
-                        title="Stories"
-                        imageUrl="https://images.unsplash.com/photo-1494806812796-244fe51b774d?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                        className="flex-shrink-0"
-                        isSelected={selectedCategory === "Stories"}
-                        onClick={() => handleCategoryClick("Stories")}
-                    />
-                    <CategoryTemplet 
-                        title="Cities"
-                        imageUrl="https://images.unsplash.com/photo-1494806812796-244fe51b774d?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                        className="flex-shrink-0"
-                        isSelected={selectedCategory === "Cities"}
-                        onClick={() => handleCategoryClick("Cities")}
-                    />
-                    <CategoryTemplet 
-                        title="Vlogs"
-                        imageUrl="https://images.unsplash.com/photo-1494806812796-244fe51b774d?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                        className="flex-shrink-0"
-                        isSelected={selectedCategory === "Vlogs"}
-                        onClick={() => handleCategoryClick("Vlogs")}
-                    />
-                    <CategoryTemplet 
-                        title="Monuments"
-                        imageUrl="https://images.unsplash.com/photo-1494806812796-244fe51b774d?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                        className="flex-shrink-0"
-                        isSelected={selectedCategory === "Monuments"}
-                        onClick={() => handleCategoryClick("Monuments")}
-                    />
-                    <CategoryTemplet 
-                        title="Wildlife"
-                        imageUrl="https://images.unsplash.com/photo-1494806812796-244fe51b774d?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                        className="flex-shrink-0"
-                        isSelected={selectedCategory === "Wildlife"}
-                        onClick={() => handleCategoryClick("Wildlife")}
-                    />
+                    
+                    {categories.map((category) => (
+                        <CategoryTemplet 
+                            key={category}
+                            title={category}
+                            imageUrl="https://images.unsplash.com/photo-1494806812796-244fe51b774d?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                            className="flex-shrink-0"
+                            isSelected={selectedCategory === category}
+                            onClick={() => handleCategoryClick(category)}
+                        />
+                    ))}
                 </div>
             </div>
     </div>
