@@ -77,12 +77,12 @@ const Pagination = ({ currentPage = 1, totalPages = 5, onPageChange = () => {} }
             {getPageNumbers().map((page, index) => (
                 <div key={index} className="mx-1">
                     {page === "..." ? (
-                        <div className="w-12 h-12 flex items-center justify-center">
+                        <div className="w-12 s-font h-12 flex items-center justify-center">
                             <span className="text-black text-lg font-normal">•••</span>
                         </div>
                     ) : (
                         <button
-                            className={`w-12 h-12 ${
+                            className={`w-12 s-font h-12 ${
                                 currentPage === page 
                                     ? 'bg-white border-2 border-black' 
                                     : 'bg-white'
