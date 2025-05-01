@@ -89,10 +89,12 @@ const Navbar = () => {
                     >
                         <Menu className="w-6 h-6" />
                     </div>
-                    
+                    <a href="/">
+
                     <h1 className="text-2xl font-bold text-black">
                         TravelUp
                     </h1>
+                    </a>
                     
                     <div className="text-black cursor-pointer">
                         <Search className="w-6 h-6" />
