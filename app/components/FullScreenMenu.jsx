@@ -75,14 +75,6 @@ const FullscreenMenu = ({ onClose, isOpen }) => {
                         <div className="absolute inset-0" onClick={onClose}></div>
                         
                         <div className="z-10 flex flex-col md:flex-row w-full max-w-7xl px-6 md:px-16 relative">
-                            {/* Close button for better UX */}
-                            <button 
-                                className="absolute top-0 right-6 text-white text-2xl p-2" 
-                                onClick={onClose}
-                                aria-label="Close menu"
-                            >
-                                ✕
-                            </button>
                             
                             <motion.div 
                                 className="w-full md:w-1/2 flex flex-col justify-start items-start gap-8 md:gap-12 my-10 md:my-0"

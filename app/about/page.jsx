@@ -19,8 +19,8 @@ export const metadata = {
                     <img className="object-cover w-full h-full" src="https://plus.unsplash.com/premium_photo-1681400745727-c69f8e47f524?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Hero background" />
                 </div>
                 <div className='absolute w-3/4 h-1/3 -mt-40 mx-auto left-0 right-0 bottom-0 bg-white p-8'>
-                    <h1 className="text-4xl mt-5 font-bold text-center">My name is</h1>
-                    <h1 className="text-4xl mt-3 font-bold text-center">Saurabh Sharma</h1>
+                    <h1 className="text-4xl font-bold text-center">My name is</h1>
+                    <h1 className="text-4xl font-bold text-center">Saurabh Sharma</h1>
                 </div>
                 <div className="absolute bottom-0 justify-center w-full">
                     <div className="flex justify-center gap-2 mb-6">
